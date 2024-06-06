@@ -9,6 +9,9 @@ import com.example.gestioninventaireserveur.repositories.inventory.InventoryRepo
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class InventoryService {
@@ -33,6 +36,10 @@ public class InventoryService {
 
     public InventoryGetDTO getInventory(Long id) {
         return InventoryGetDTO.fromInventory(inventoryRepository.findById(id).orElseThrow());
+    }
+
+    public List<InventoryGetDTO> getAllInventoryItems() {
+        return inventoryRepository.findAll().stream().map(InventoryGetDTO::fromInventory).collect(Collectors.toList());
     }
 
 }

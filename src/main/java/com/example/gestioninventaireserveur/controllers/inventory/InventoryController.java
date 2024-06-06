@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/inventory")
 @RequiredArgsConstructor
@@ -29,6 +31,17 @@ public class InventoryController {
     public ResponseEntity<InventoryGetDTO> getInventory(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(inventoryService.getInventory(id));
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @RequestMapping("/getAll")
+    public ResponseEntity<List<InventoryGetDTO>> getAllInventoryItems() {
+        try {
+            return ResponseEntity.ok(inventoryService.getAllInventoryItems());
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
