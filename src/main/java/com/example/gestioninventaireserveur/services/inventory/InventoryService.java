@@ -31,4 +31,8 @@ public class InventoryService {
                 .build()));
     }
 
+    public InventoryGetDTO getInventory(Long id) {
+        return InventoryGetDTO.fromInventory(inventoryRepository.findById(id).orElseThrow());
+    }
+
 }
