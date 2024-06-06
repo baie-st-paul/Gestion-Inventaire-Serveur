@@ -19,3 +19,4 @@ public class Inventory {
     private String location;
     private int currentQuantity;
 }
+
