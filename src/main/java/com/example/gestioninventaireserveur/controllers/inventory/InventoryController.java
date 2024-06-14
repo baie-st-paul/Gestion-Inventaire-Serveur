@@ -48,4 +48,16 @@ public class InventoryController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @RequestMapping("/delete/{id}")
+    public ResponseEntity<String> deleteInventory(@PathVariable Long id) {
+        try {
+            inventoryService.deleteInventory(id);
+            return ResponseEntity.ok("Inventory deleted successfully");
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }

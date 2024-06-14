@@ -42,4 +42,7 @@ public class InventoryService {
         return inventoryRepository.findAll().stream().map(InventoryGetDTO::fromInventory).collect(Collectors.toList());
     }
 
+    public void deleteInventory(Long id) {
+        inventoryRepository.deleteById(id);
+    }
 }
