@@ -2,6 +2,7 @@ package com.example.gestioninventaireserveur.controllers.inventory;
 
 import com.example.gestioninventaireserveur.DTOs.inventoryDTOs.InventoryGetDTO;
 import com.example.gestioninventaireserveur.DTOs.inventoryDTOs.InventoryPostDTO;
+import com.example.gestioninventaireserveur.DTOs.inventoryDTOs.InventoryPutDTO;
 import com.example.gestioninventaireserveur.services.inventory.InventoryService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -56,6 +57,16 @@ public class InventoryController {
             return ResponseEntity.ok("Inventory deleted successfully");
         }
         catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<InventoryGetDTO> updateInventory(@PathVariable Long id, @Valid @RequestBody InventoryPutDTO inventoryPutDTO) {
+        try {
+            return ResponseEntity.ok(inventoryService.updateInventory(id, inventoryPutDTO));
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return ResponseEntity.badRequest().build();
         }

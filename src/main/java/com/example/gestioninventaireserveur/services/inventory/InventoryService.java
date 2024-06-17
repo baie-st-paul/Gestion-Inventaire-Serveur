@@ -2,6 +2,7 @@ package com.example.gestioninventaireserveur.services.inventory;
 
 import com.example.gestioninventaireserveur.DTOs.inventoryDTOs.InventoryGetDTO;
 import com.example.gestioninventaireserveur.DTOs.inventoryDTOs.InventoryPostDTO;
+import com.example.gestioninventaireserveur.DTOs.inventoryDTOs.InventoryPutDTO;
 import com.example.gestioninventaireserveur.models.inventory.Image;
 import com.example.gestioninventaireserveur.models.inventory.Inventory;
 import com.example.gestioninventaireserveur.models.inventory.Item;
@@ -44,5 +45,16 @@ public class InventoryService {
 
     public void deleteInventory(Long id) {
         inventoryRepository.deleteById(id);
+    }
+
+    public InventoryGetDTO updateInventory(Long id, InventoryPutDTO inventoryPutDTO) {
+        Inventory inventory = inventoryRepository.findById(id).orElseThrow();
+        inventory.getItem().setName(inventoryPutDTO.getName());
+        inventory.getItem().setDescription(inventoryPutDTO.getDescription());
+        inventory.getItem().setCategory(inventoryPutDTO.getCategory());
+        inventory.setCurrentQuantity(inventoryPutDTO.getCurrentQuantity());
+        inventory.setTotalQuantity(inventoryPutDTO.getTotalQuantity());
+        inventory.setLocation(inventoryPutDTO.getLocation());
+        return InventoryGetDTO.fromInventory(inventoryRepository.save(inventory));
     }
 }
