@@ -16,7 +16,7 @@ import java.util.List;
 public class InventoryController {
     private final InventoryService inventoryService;
 
-    @RequestMapping("/create")
+    @PostMapping("/create")
     public ResponseEntity<InventoryGetDTO> createInventory(@Valid @RequestBody InventoryPostDTO inventoryPostDTO) {
         try {
             return ResponseEntity.ok(inventoryService.createInventory(inventoryPostDTO));
@@ -27,7 +27,7 @@ public class InventoryController {
         }
     }
 
-    @RequestMapping("/get/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<InventoryGetDTO> getInventory(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(inventoryService.getInventory(id));
@@ -38,7 +38,7 @@ public class InventoryController {
         }
     }
 
-    @RequestMapping("/getAll")
+    @GetMapping("/getAll")
     public ResponseEntity<List<InventoryGetDTO>> getAllInventoryItems() {
         try {
             return ResponseEntity.ok(inventoryService.getAllInventoryItems());
@@ -49,7 +49,7 @@ public class InventoryController {
         }
     }
 
-    @RequestMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteInventory(@PathVariable Long id) {
         try {
             inventoryService.deleteInventory(id);
