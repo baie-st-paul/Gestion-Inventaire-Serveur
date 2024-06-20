@@ -1,6 +1,9 @@
 package com.example.gestioninventaireserveur.models.inventory;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.*;
 
 @Getter
@@ -9,14 +12,9 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Inventory {
+public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int totalQuantity;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Item item;
-    private String location;
-    private int currentQuantity;
+    private String name;
 }
-

@@ -1,9 +1,10 @@
 package com.example.gestioninventaireserveur.repositories.inventory;
 
-import com.example.gestioninventaireserveur.models.inventory.Inventory;
+import com.example.gestioninventaireserveur.models.inventory.Project;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface InventoryRepository extends JpaRepository<Inventory, Long> {
+public interface ProjectRepository extends JpaRepository<Project, Long> {
+    Project findByName(String name);
 }

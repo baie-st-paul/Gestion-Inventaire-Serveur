@@ -1,6 +1,6 @@
 package com.example.gestioninventaireserveur.models.borrows;
 
-import com.example.gestioninventaireserveur.models.inventory.Inventory;
+import com.example.gestioninventaireserveur.models.inventory.Item;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,6 +15,6 @@ public class BorrowedItems {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Inventory inventory;
+    private Item item;
     private int quantity;
 }

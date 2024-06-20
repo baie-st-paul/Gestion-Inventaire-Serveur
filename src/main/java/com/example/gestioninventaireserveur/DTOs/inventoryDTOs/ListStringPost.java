@@ -7,11 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class InventoryPutDTO {
+public class ListStringPost {
     private String name;
-    private String description;
-    private String category;
-    private int currentQuantity;
-    private int totalQuantity;
-    private String location;
 }
