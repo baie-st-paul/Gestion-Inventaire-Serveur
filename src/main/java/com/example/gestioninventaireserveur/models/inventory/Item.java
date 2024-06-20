@@ -21,10 +21,10 @@ public class Item {
     private String location;
     private int currentQuantity;
     private int totalQuantity;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "ressource_type_id")
     private RessourceType ressourceType;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "local_id")
     private Local local;
     @Enumerated(EnumType.STRING)
@@ -32,7 +32,7 @@ public class Item {
     private boolean consumable;
     @Enumerated(EnumType.STRING)
     private Status status;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project;
 
