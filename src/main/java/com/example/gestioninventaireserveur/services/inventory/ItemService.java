@@ -26,6 +26,7 @@ public class ItemService {
     }
 
     public ItemGetDTO createInventory(ItemPostDTO itemPostDTO) {
+        System.out.println(itemPostDTO);
         return ItemGetDTO.fromInventory(itemRepository.save(Item.builder()
                 .name(itemPostDTO.getName())
                 .description(itemPostDTO.getDescription())
@@ -36,12 +37,12 @@ public class ItemService {
                 .currentQuantity(itemPostDTO.getQuantity())
                 .location(itemPostDTO.getLocation())
                 .totalQuantity(itemPostDTO.getQuantity())
-                .ressourceType(RessourceType.builder().name(itemPostDTO.getName()).build())
-                .local(Local.builder().name(itemPostDTO.getLocal()).build())
+                .ressourceType(ressourceTypeService.findByName(itemPostDTO.getRessourceType()))
+                .local(localService.findByName(itemPostDTO.getLocal()))
                 .state(State.valueOf(itemPostDTO.getState()))
                 .consumable(itemPostDTO.isConsumable())
                 .status(Status.valueOf(itemPostDTO.getStatus()))
-                .project(Project.builder().name(itemPostDTO.getProject()).build())
+                .project(projectService.findByName(itemPostDTO.getProject()))
                 .build()));
     }
 
