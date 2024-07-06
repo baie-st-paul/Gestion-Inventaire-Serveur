@@ -1,4 +1,4 @@
-version: '1'
+version: '3'
 services:
   myapp:
     image: pvall/gestion_inventaire_serveur
