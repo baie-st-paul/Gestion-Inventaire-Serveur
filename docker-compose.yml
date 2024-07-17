@@ -1,12 +1,12 @@
 version: '3'
 services:
-  myapp:
-    image: pvall/gestion_inventaire_serveur
+  server:
+    image: philippevallerand/gestion_inventaire_serveur
     container_name: gestion_inventaire_serveur
     depends_on:
       - postgres
     ports:
-      - "8081:8081"
+      - "8083:8083"
     environment:
         - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5433/inventaire?useUnicode=true&characterEncoding=utf8&useSSL=false
         - spring.datasource.username=admin
@@ -20,7 +20,12 @@ services:
       POSTGRES_DB: inventaire
       POSTGRES_INITDB_ARGS: '--encoding=UTF-8'
     volumes:
-      - C:\Users\pvall\Documents\Labo_AL\Gestion_Inventaire\postgres:/var/lib/postgresql/data
+      - ./postgres:/var/lib/postgresql/data
     ports:
       - "5433:5433"
     command: -p 5433
+  interface:
+    image: philippevallerand/gestion_inventaire_interface
+    container_name: gestion_inventaire_interface
+    ports:
+      - "8000:8000"
